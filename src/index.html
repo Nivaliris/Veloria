@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'" />
+  <title>Veloria Library</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="booklore.css" />
+  <script defer src="renderer.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">✦</div><div>veloria<span>LIBRARY</span></div></div>
+    <div class="side-label">BIBLIOTECA</div>
+    <button class="nav" data-view="dashboard">⌂ <span>Dashboard</span></button>
+    <button class="nav active" data-view="all" id="allNav">▦ <span>Todos os livros</span></button>
+    <button class="nav" data-view="favorites">♡ <span>Os meus favoritos</span></button>
+    <button class="nav" data-view="recent">◷ <span>Adicionados recentemente</span></button>
+    <div class="sidebar-section-title"><span>CATEGORIAS</span><button id="manageCategories" title="Gerir categorias">＋</button></div>
+    <div id="categoryShortcuts" class="category-shortcuts"></div>
+    <div class="side-label authors-label">AUTORES DA COLEÇÃO</div>
+    <div id="authorShortcuts" class="author-shortcuts"></div>
+    <div class="sidebar-bottom"><div class="side-label">ORIGEM DA BIBLIOTECA</div><div id="folderName" class="folder-name">Nenhuma pasta selecionada</div><button id="chooseFolderSide" class="side-button">⌁ Alterar pasta</button></div>
+  </aside>
+  <main>
+    <header><div class="eyebrow">A MINHA BIBLIOTECA <span class="breadcrumb">/ Visão geral</span></div><div class="header-actions"><button id="refresh" class="refresh" title="Atualizar biblioteca">↻</button><button id="chooseFolder" class="button secondary">⌁ Gerir biblioteca</button><div class="avatar">V</div></div></header>
+    <section class="hero"><div class="hero-copy"><div class="hero-kicker">✦ O TEU CANTINHO LITERÁRIO</div><h1>Bem-vinda à tua <em>biblioteca.</em></h1><p>Todas as histórias que guardas, num só lugar.</p></div><div class="hero-art">✧</div></section>
+    <section class="stats"><div class="stat"><div class="stat-icon purple">▤</div><div><span>TOTAL DE LIVROS</span><strong id="totalCount">0</strong><small>Na tua coleção</small></div></div><div class="stat"><div class="stat-icon pink">♡</div><div><span>FAVORITOS</span><strong id="favoriteCount">0</strong><small>Os teus preferidos</small></div></div><div class="stat"><div class="stat-icon blue">◈</div><div><span>AUTORES</span><strong id="authorCount">0</strong><small>Universos diferentes</small></div></div><div class="stat"><div class="stat-icon amber">◷</div><div><span>FORMATOS</span><strong id="formatCount">0</strong><small>Tipos de ficheiro</small></div></div></section>
+    <section class="featured" id="featured" hidden><div class="section-intro"><div><span>REDESCOBRE A TUA ESTANTE</span><h2>Em destaque <b>✦</b></h2></div></div><div id="featuredCards" class="featured-cards"></div></section>
+    <section class="section-intro collection-intro"><div><span>EXPLORA A TUA COLEÇÃO</span><h2 id="collectionTitle">Todos os livros <b>✦</b></h2></div><div class="collection-actions"><span id="resultsCount" class="results-count">0 livros</span><button id="toggleFilters" class="button secondary">☷ Filtros</button></div></section>
+    <section class="toolbar"><div class="search"><span>⌕</span><input id="search" placeholder="Pesquisar livros, autores..." autocomplete="off" /></div><select id="author"><option value="">Todos os autores</option></select><select id="format"><option value="">Todos os formatos</option></select><select id="sort"><option value="title">Título (A–Z)</option><option value="author">Autor (A–Z)</option><option value="created-desc">Mais recentes</option><option value="created-asc">Mais antigos</option><option value="modified-desc">Última alteração</option></select></section>
+    <div id="status" class="status" role="status"></div>
+    <section id="books" class="books"></section>
+    <button id="loadMore" class="button secondary load-more" hidden>Mostrar mais livros</button>
+    <div id="empty" class="empty" hidden><div class="empty-icon">◇</div><h2>A tua biblioteca começa aqui</h2><p>Escolhe a pasta onde guardas os livros. Vamos encontrar ficheiros EPUB, PDF, MOBI, AZW3, CBZ e TXT.</p><button id="chooseFolderEmpty" class="button">Escolher pasta de livros</button></div>
+    <footer>VELORIA LIBRARY <span>•</span> A tua coleção, no teu computador.</footer>
+  </main>
+  <aside id="filtersPanel" class="filters-panel">
+    <div class="filter-heading"><strong>Filtrar coleção</strong><button id="clearFilters" title="Limpar filtros">Limpar</button></div>
+    <div class="filter-section"><div class="filter-title">AUTORES <span id="filterAuthorCount"></span></div><div id="filterAuthors" class="filter-options"></div></div>
+    <div class="filter-section"><div class="filter-title">CATEGORIAS</div><div id="filterCategories" class="filter-options"></div></div>
+    <div class="filter-section"><div class="filter-title">FORMATOS</div><div id="filterFormats" class="filter-options"></div></div>
+    <div class="filter-section"><div class="filter-title">ESTADO DE LEITURA</div><div id="filterStatuses" class="filter-options"></div></div>
+  </aside>
+  <dialog id="details"><button id="closeDetails" class="close-modal" aria-label="Fechar">×</button><div id="detailContent"></div></dialog>
+  <dialog id="categoriesDialog" class="categories-dialog"><button id="closeCategories" class="close-modal" aria-label="Fechar">×</button><h2>Gerir categorias</h2><p>Cria categorias para organizares os livros à tua maneira, sem alterar as pastas originais.</p><form id="categoryForm"><input id="newCategory" maxlength="45" placeholder="Ex.: Fantasia, Romance, Para ler..." required /><button class="button" type="submit">＋ Criar</button></form><div id="categoryManagerList" class="category-manager-list"></div></dialog>
+</body>
+</html>

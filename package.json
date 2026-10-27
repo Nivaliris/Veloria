@@ -1,0 +1,27 @@
+{
+  "name": "veloria-library",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Biblioteca pessoal de livros, offline",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/renderer.js",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "dev.nirikza.library",
+    "productName": "Veloria Library",
+    "files": ["src/**/*", "package.json"],
+    "mac": { "target": ["dmg"], "category": "public.app-category.books" },
+    "win": { "target": ["nsis"] }
+  }
+}
