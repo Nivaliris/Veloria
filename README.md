@@ -1,54 +1,40 @@
-# Veloria Library
+# Veloria 0.2 — Biblioteca pessoal (Rust + GPUI Community Edition)
 
-Biblioteca pessoal offline para macOS e Windows, feita em Electron. Escolhe uma pasta e a aplicação identifica os livros e apresenta-os numa interface de catálogo escura com detalhes em roxo, grelha compacta de capas, filtros laterais, categorias personalizadas, favoritos, estados de leitura e um dashboard opcional. Abre os ficheiros na aplicação predefinida.
+Aplicação local para macOS. Interface escura e compacta com grelha responsiva, favoritos, categorias, estados de leitura e pesquisa/filtros.
 
-## Executar
+## Instalação
 
-Instala o [Node.js](https://nodejs.org/) (versão LTS). Na pasta do projeto:
+Requer Rust estável e ferramentas de desenvolvimento Xcode. Na pasta do projeto:
 
-```bash
-npm install
-npm start
+```sh
+cargo run
 ```
 
-Para gerar uma aplicação instalável, no respetivo sistema operativo:
+> **Nota:** Esta versão preserva o contorno de arranque utilizado após o bloqueio de `MacPlatformState`: a abertura da janela é agendada através de `cx.spawn`. Se já tens uma versão funcional com um arranque diferente, mantém a tua função `main()` e substitui apenas o resto do código.
 
-```bash
-npm run build:mac
-# ou, no Windows
-npm run build:win
-```
+## Novidades
 
-O instalador é criado em `dist/`. Uma aplicação macOS sem assinatura digital poderá exigir autorização manual nas definições de segurança.
+- **Grelha responsiva:** colunas calculadas pela largura disponível (e ajustadas quando o painel de detalhes é aberto).
+- **Títulos contidos:** cartões de largura fixa e textos abreviados para não invadirem as capas vizinhas.
+- **Capas locais:** `cover.jpg`, `folder.png`, etc. como antes. Se não existirem, extrai imagens `cover` ou `front` dentro dos EPUB. Nos PDFs, no macOS, tenta gerar uma miniatura com o QuickLook (`qlmanage`).
+- **Cache:** em `~/Library/Caches/Veloria/covers` (ou equivalente do sistema). O nome inclui caminho, tamanho e data de modificação do ficheiro, evitando reutilização de capas após alterações.
+- **Geração em segundo plano:** só as capas que estão visíveis são colocadas na fila. Para ver as miniaturas acabadas de gerar, clica em **↻ Capas**; os restantes livros são processados à medida que navegas.
+- **Filtros e ordenação:** pesquisa; botão **Autor** (nome exato); botão **Formatos** (todos → EPUB → PDF → outros); ordenação por título → autor → recentes → antigos.
+- **Organização:** categorias personalizadas, favoritos e estados de leitura continuam guardados no SQLite local.
+- **Reindexar:** botão separado para voltar a procurar ficheiros na biblioteca.
 
-## Organização recomendada
+## Limitações atuais
 
-```text
-Biblioteca/
-  Ursula K. Le Guin/
-    A Wizard of Earthsea/
-      A Wizard of Earthsea.epub
-      cover.jpg
-  Jane Austen/
-    Pride and Prejudice/
-      livro.pdf
-      capa.png
-```
+- A deteção da capa de EPUB baseia-se em nomes habituais (`cover`, `front`); alguns EPUBs podem indicar a imagem de capa apenas no manifesto OPF e continuar sem capa.
+- O QuickLook nem sempre disponibiliza miniaturas para todos os PDFs. Nesses casos aparece a capa tipográfica alternativa.
+- A data de ordenação é a **data de modificação do ficheiro** (não a data de publicação ou de criação do livro).
+- A leitura/indexação inicial da biblioteca ainda ocorre sincronicamente. A geração de capas é feita numa thread separada.
+- A introdução de texto usa diálogos nativos simples; um campo de pesquisa embutido na UI é trabalho futuro.
 
-Também podes guardar `Biblioteca/Autor/livro.epub` ou livros diretamente na pasta principal. A aplicação lê EPUB, PDF, MOBI, AZW3, CBZ e TXT, incluindo subpastas até oito níveis. A capa é procurada na pasta do livro (`cover.jpg`, `capa.png`, `folder.jpg` ou com o nome do ficheiro); para EPUB tenta também encontrar uma imagem de capa dentro do ficheiro. Para PDFs sem imagem separada, aparece uma capa estilizada com o título.
+## Dados e privacidade
 
-**Datas:** "Mais recentes" ordena pela data de criação do ficheiro no sistema operativo, não pela data de publicação do livro. Os livros não são copiados nem alterados; a pasta selecionada fica guardada nas preferências locais.
+A aplicação não envia livros para servidores externos nem altera os documentos. O estado de leitura, favoritos, categorias e caminho da biblioteca são guardados na base de dados local preexistente, preservando os teus dados ao atualizar o código. O diretório `target/` é ignorado pelo Git.
 
-**Favoritos:** São guardados localmente na aplicação. Ao clicar numa capa abres os detalhes do livro; usa o botão «Abrir livro» para o abrir no leitor instalado. A área «Em destaque» mostra os ficheiros mais recentemente criados na coleção.
+## Compilação
 
-**Categorias:** O botão `+` ao lado de «Categorias» permite criar, renomear ou eliminar categorias. Para atribuir uma ou mais categorias, abre os detalhes de um livro e seleciona-as. As categorias e os estados de leitura são guardados localmente e não alteram as tuas pastas. A barra lateral e o painel direito permitem filtrar por categorias, autores, formatos e estados.
-
-**Coleções grandes:** A grelha mostra os primeiros 96 resultados e permite carregar progressivamente mais livros. Para os EPUB, tenta extrair também o título e o autor dos metadados internos. A leitura inicial de milhares de ficheiros pode demorar um pouco, dependendo do disco.
-
-**Limitação atual:** PDFs sem `cover.jpg`/`capa.png` ou imagem com o nome do ficheiro continuam a usar capa estilizada. A extração automática da primeira página PDF ainda não está implementada.
-
-## Próximas melhorias possíveis
-
-- Leitura de metadados internos (autor, título, ano, série e ISBN) de EPUB/PDF.
-- Extração da primeira página PDF como capa e leitura de `metadata.opf`.
-- Favoritos, progresso de leitura, etiquetas e várias bibliotecas.
+Este pacote foi revisto estaticamente, mas **não foi compilado/testado num Mac neste ambiente**. Corre `cargo check` antes de executar. Se surgir um erro de API GPUI, envia o log completo para corrigirmos com precisão.

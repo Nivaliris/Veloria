@@ -1,0 +1,11 @@
+/Users/lu/Documents/github bangers/Veloria/target/debug/deps/gpui_ce_parley-6332dbf2feb850b7.d: /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/lib.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/catalog.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/store.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/text_system.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/text_system/paragraphs.rs
+
+/Users/lu/Documents/github bangers/Veloria/target/debug/deps/libgpui_ce_parley-6332dbf2feb850b7.rlib: /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/lib.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/catalog.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/store.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/text_system.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/text_system/paragraphs.rs
+
+/Users/lu/Documents/github bangers/Veloria/target/debug/deps/libgpui_ce_parley-6332dbf2feb850b7.rmeta: /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/lib.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/catalog.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/store.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/text_system.rs /Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/text_system/paragraphs.rs
+
+/Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/lib.rs:
+/Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/catalog.rs:
+/Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/store.rs:
+/Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/text_system.rs:
+/Users/lu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/gpui_ce_parley-0.3.0/src/text_system/paragraphs.rs:

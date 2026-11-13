@@ -1,0 +1,22 @@
+[package]
+name = "veloria"
+version = "0.2.0"
+edition = "2024"
+description = "Minimal local-first book library built with Rust and GPUI"
+license = "MIT"
+
+[dependencies]
+gpui = { package = "gpui-ce", version = "0.3.0" }
+gpui_platform = { package = "gpui_ce_platform", version = "0.3" }
+rusqlite = { version = "0.32", features = ["bundled"] }
+walkdir = "2.5"
+dirs = "6"
+anyhow = "1"
+zip = { version = "2.2", default-features = false, features = ["deflate"] }
+regex = "1"
+rfd = "0.15"
+tinyfiledialogs = "3.9"
+
+[profile.dev]
+debug = 0
+incremental = false

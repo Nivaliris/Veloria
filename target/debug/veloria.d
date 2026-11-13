@@ -1,0 +1,1 @@
+/Users/lu/Documents/github\ bangers/Veloria/target/debug/veloria: /Users/lu/Documents/github\ bangers/Veloria/src/catalog.rs /Users/lu/Documents/github\ bangers/Veloria/src/covers.rs /Users/lu/Documents/github\ bangers/Veloria/src/main.rs /Users/lu/Documents/github\ bangers/Veloria/src/storage.rs
